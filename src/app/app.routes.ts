@@ -1,3 +1,6 @@
 import { Routes } from '@angular/router';
-
-export const routes: Routes = [];
+import { MongoDbExampleComponent } from '../app/mongo-db-example/mongo-db-example.component';
+export const routes: Routes = 
+[
+    { path: '', component: MongoDbExampleComponent}, // dailyMood route  
+];

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-
+import {MongoDbExampleComponent } from '../app/mongo-db-example/mongo-db-example.component';
 @Component({
   selector: 'app-root',
   standalone: true,
