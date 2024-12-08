@@ -31,6 +31,9 @@ export class MongoDbExampleComponent implements OnInit {
       this.deleteResult = isSuccess;
       this.getDataFromDB();
     })
+    .catch((error)=>{
+      this.deleteResult = false;
+    })
 
     
   }

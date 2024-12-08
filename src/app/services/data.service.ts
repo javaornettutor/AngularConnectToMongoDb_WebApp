@@ -54,6 +54,7 @@ export class DataService {
       .catch((error) => {
         console.error(error);
         throw error;
+        return false;
       });
   }
 }

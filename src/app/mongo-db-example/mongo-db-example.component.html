@@ -10,6 +10,7 @@
           </div>
         </div>
       </div>
+      <h1>Form </h1>
       <form (ngSubmit)="addItem()" class="p-3 border rounded shadow-sm">
         <div class="mb-3">
           <label for="title" class="form-label">Title</label>
@@ -68,10 +69,10 @@
           </button>
           <button type="submit" class="btn btn-primary">Add Item</button>
         </div>
-        <div *ngIf="this.deleteResult">
+        <div *ngIf="this.deleteResult" class="bg-success text-white p-3">
             Delete item Successful
         </div>
-        <div *ngIf="!this.deleteResult">
+        <div *ngIf="!this.deleteResult" class="bg-danger text-white p-3">
             Delete item Unsuccessful
         </div>
       </form>

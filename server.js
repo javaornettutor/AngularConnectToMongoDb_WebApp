@@ -1,4 +1,3 @@
-
 const express = require("express");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
@@ -64,10 +63,13 @@ app.delete("/deleteBook/:title", async (req, res) => {
     const book = await Item.find({ title: deleteTitleText });
 
     console.log("after result");
-    if (book === 0) {
+    if (book.length === 0) 
+    {
       console.log("Book not found");
       res.status(404).json({ message: "Book not found" });
-    } else {
+    }
+    else
+    {
       const postsCollection = db.collection("books");
       const deleteResult = await postsCollection.deleteMany({
         title: deleteTitleText,
