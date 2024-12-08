@@ -1,0 +1,37 @@
+[{
+  "title": "Name of the wind",
+  "pages": 500,
+  "genre": [
+    "fantasy",
+    "magical"
+  ],
+  "newAuthor": "William"
+},
+{
+
+  "title": "Michael Jackson22",
+  "pages": 100,
+  "genre": [
+    "Dancing",
+    "Maths"
+  ],
+  "newAuthor": "Jackson"
+},
+{
+
+  "title": "Will Smith",
+  "pages": 450,
+  "genre": [
+    "Technology",
+    "Bicycle"
+  ],
+  "newAuthor": "Smith"
+},
+{
+
+  "title": "efdf",
+  "pages": 1,
+  "genre": [],
+  "__v": 0,
+  "newAuthor": "dff"
+}]

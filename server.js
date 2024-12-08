@@ -1,3 +1,4 @@
+
 const express = require("express");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
@@ -22,7 +23,7 @@ db.once("open", () => {
 });
 
 // Example Schema and Model
-const ItemSchema = new mongoose.Schema({
+const bookSchema = new mongoose.Schema({
   title: String,
   author: String,
   pages: Number,
@@ -30,10 +31,11 @@ const ItemSchema = new mongoose.Schema({
   rating: Number,
 });
 
-const Item = mongoose.model("Book", ItemSchema);
+const Item = mongoose.model("Book", bookSchema);
 
 // Routes
 app.get("/books", async (req, res) => {
+  console.log("get books");
   try {
     const items = await Item.find();
     res.json(items);
@@ -44,6 +46,7 @@ app.get("/books", async (req, res) => {
 
 app.post("/addBook", async (req, res) => {
   const newItem = new Item(req.body);
+  console.log("add a book");
   try {
     const savedItem = await newItem.save();
     res.status(201).json(savedItem);
@@ -53,23 +56,28 @@ app.post("/addBook", async (req, res) => {
 });
 
 // Delete Post by Title API
-app.delete("/deleteBook", async (req, res) => {
-  const { title } = req.query; // Get title from query string
-
-  if (!title) {
-    return res.status(400).json({ message: "Title is required" });
-  }
-
+app.delete("/deleteBook/:title", async (req, res) => {
+  const deleteTitleText = req.params.title.trim();
+  console.log("test me delete", deleteTitleText);
   try {
-    const postsCollection = db.collection("books");
+    console.log("in try");
+    const book = await Item.find({ title: deleteTitleText });
 
-    const result = await postsCollection.deleteOne({ title });
-    if (result.deletedCount === 0) {
-      return res.status(404).json({ message: "Post not found" });
+    console.log("after result");
+    if (book === 0) {
+      console.log("Book not found");
+      res.status(404).json({ message: "Book not found" });
+    } else {
+      const postsCollection = db.collection("books");
+      const deleteResult = await postsCollection.deleteMany({
+        title: deleteTitleText,
+      });
+      res.status(200).json({ message: "Book deleted successfully" });
+      console.log("Book deleted successfully'");
     }
-    res.status(200).json({ message: "Post deleted successfully" });
   } catch (error) {
-    res.status(500).json({ message: "Failed to delete post", error });
+    console.log("error");
+    res.status(500).json({ message: "Server error", error });
   }
 });
 

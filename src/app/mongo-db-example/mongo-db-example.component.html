@@ -1,1 +1,78 @@
-<p>mongo-db-example works!</p>
+<div class="container">
+      <h1>List of Books</h1>
+      <div class="row">
+        <div class="col-md-4 mb-3" *ngFor="let item of items">
+          <div class="card">
+            <div class="card-body">
+              <p class="card-title">Title : {{ item.title }}</p>
+              <p class="card-text">Author: {{ item.author }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <form (ngSubmit)="addItem()" class="p-3 border rounded shadow-sm">
+        <div class="mb-3">
+          <label for="title" class="form-label">Title</label>
+          <input
+            id="title"
+            [(ngModel)]="newItem.title"
+            (change)="handleTitleChange(newItem.title)"
+            name="title"
+            placeholder="Title"
+            class="form-control"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label for="author" class="form-label">Author</label>
+          <input
+            id="author"
+            [(ngModel)]="newItem.author"
+            name="author"
+            placeholder="Author"
+            class="form-control"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label for="pages" class="form-label">Pages</label>
+          <input
+            id="pages"
+            [(ngModel)]="newItem.pages"
+            name="pages"
+            type="number"
+            placeholder="Pages"
+            class="form-control"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label for="rating" class="form-label">Rating</label>
+          <input
+            id="rating"
+            [(ngModel)]="newItem.rating"
+            name="rating"
+            type="number"
+            placeholder="Rating"
+            class="form-control"
+          />
+        </div>
+
+        <div class="d-flex justify-content-between">
+          <button
+            type="button"
+            class="btn btn-danger me-2"
+            (click)="onDeleteButtonClick()"
+          >
+            Delete Book by Title
+          </button>
+          <button type="submit" class="btn btn-primary">Add Item</button>
+        </div>
+        <div *ngIf="this.deleteResult">
+            Delete item Successful
+        </div>
+        <div *ngIf="!this.deleteResult">
+            Delete item Unsuccessful
+        </div>
+      </form>
+    </div>
